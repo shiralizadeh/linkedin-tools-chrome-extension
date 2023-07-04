@@ -1,0 +1,28 @@
+{
+  "name": "linkedin-tools-chrome-extension",
+  "version": "1.0.0",
+  "description": "LinkedIn Tools Chrome Extension",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "watch": "npm run build -- --watch",
+    "esbuild": "esbuild src/*.ts --bundle --minify --outdir=dist"
+  },
+  "keywords": [],
+  "author": "Mohamad Shiralizadeh",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/canvas-confetti": "^1.6.0",
+    "@types/chrome": "^0.0.235",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
+    "esbuild": "^0.18.11",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "ts-loader": "^9.4.2",
+    "typescript": "^5.0.4",
+    "webpack": "^5.82.0",
+    "webpack-cli": "^5.1.0"
+  }
+}

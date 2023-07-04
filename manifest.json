@@ -1,0 +1,26 @@
+{
+  "name": "LinkedIn Tools Chrome Extension",
+  "description": "LinkedIn Tools Chrome Extension",
+  "version": "0.1",
+  "manifest_version": 3,
+  "permissions": ["activeTab", "scripting", "storage"],
+  "action": {},
+  "background": {
+    "service_worker": "dist/serviceWorker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://linkedin.com/*"],
+      "js": ["dist/contentScript.js"]
+    }
+  ],
+  "options_ui": {
+    "page": "dist/options.html",
+    "open_in_tab": false
+  },
+  "icons": {
+    "16": "assets/logo-128.png",
+    "48": "assets/logo-128.png",
+    "128": "assets/logo-128.png"
+  }
+}
