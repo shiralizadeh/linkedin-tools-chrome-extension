@@ -18,7 +18,14 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       // Copy all html files to dist folder
-      patterns: [{ from: "src/*.html", to: "[name][ext]" }],
+      patterns: [
+        { from: "src/*.html", to: "[name][ext]" },
+        { from: "assets/*.*", to: "assets/[name][ext]" },
+        {
+          from: "manifest.json",
+          to: "manifest.json",
+        },
+      ],
     }),
   ],
   module: {

@@ -6,16 +6,16 @@
   "permissions": ["activeTab", "scripting", "storage"],
   "action": {},
   "background": {
-    "service_worker": "dist/serviceWorker.js"
+    "service_worker": "serviceWorker.js"
   },
   "content_scripts": [
     {
       "matches": ["https://linkedin.com/*"],
-      "js": ["dist/contentScript.js"]
+      "js": ["contentScript.js"]
     }
   ],
   "options_ui": {
-    "page": "dist/options.html",
+    "page": "options.html",
     "open_in_tab": false
   },
   "icons": {
