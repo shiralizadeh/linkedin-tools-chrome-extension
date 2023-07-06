@@ -14,6 +14,8 @@ A set of utilities for LinkedIn
 
 ## Demo
 
+![Demo](https://raw.githubusercontent.com/shiralizadeh/linkedin-tools-chrome-extension/master/assets/demo.png)
+
 ## Requirements
 
 - LinkedIn Account 😉
