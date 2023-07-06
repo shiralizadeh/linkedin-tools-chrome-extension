@@ -1,4 +1,11 @@
-export class ConfettiPreferences {
+export function getUsername(url: string) {
+  const linkedInUsernameRegex = /linkedin\.com\/in\/([a-zA-Z0-9-]+)\/?/;
+  const username = url.match(linkedInUsernameRegex)?.[1];
+
+  return username;
+}
+
+export class LinkedInToolsPreferences {
   constructor() {}
 
   public setPreference(type: string, value: string) {

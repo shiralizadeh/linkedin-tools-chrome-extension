@@ -1,20 +1,17 @@
-import { ConfettiType } from "./serviceWorker";
-import { ConfettiPreferences } from "./utilities";
+import { LinkedInToolsPreferences } from "./utilities";
 
 // Handle UI events
-const $confettiType = document.getElementById(
-  "confettiType"
-) as HTMLSelectElement;
+const $active = document.getElementById("active") as HTMLSelectElement;
 
-$confettiType.addEventListener("change", (event) => {
-  const value = $confettiType.value;
+$active.addEventListener("change", (event) => {
+  const value = $active.value;
 
-  confettiPreferences.setPreference("confettiType", value);
+  linkedInToolsPreferences.setPreference("active", value);
 });
 
 // Handle preferences
-const confettiPreferences = new ConfettiPreferences();
+const linkedInToolsPreferences = new LinkedInToolsPreferences();
 
-confettiPreferences.getPreference("confettiType").then((value) => {
-  $confettiType.value = value || ConfettiType.Centri;
+linkedInToolsPreferences.getPreference("active").then((value) => {
+  $active.value = value || "1";
 });
