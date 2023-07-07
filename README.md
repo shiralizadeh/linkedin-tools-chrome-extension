@@ -6,11 +6,13 @@ A set of utilities for LinkedIn
 
 ## Features
 
-- 
+- Profile Notes
 
 ## Coming soon
 
-- 
+- Sync data with a third-party
+- Profile View History
+- Profile Analytics using AI
 
 ## Demo
 
@@ -22,7 +24,7 @@ A set of utilities for LinkedIn
 
 ## Extension Settings
 
-_No settings at the moment_
+- Active/DeActive extention.
 
 ## Release Notes
 
