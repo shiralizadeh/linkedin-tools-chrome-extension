@@ -13,7 +13,7 @@ module.exports = {
     filename: "[name].js",
   },
   resolve: {
-    extensions: [".ts", ".js"],
+    extensions: [".tsx", ".ts", ".js"],
   },
   plugins: [
     new CopyPlugin({
@@ -31,8 +31,8 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        loader: "ts-loader",
+        test: /\.tsx?$/,
+        loader: "babel-loader",
         exclude: /node_modules/,
       },
       {
