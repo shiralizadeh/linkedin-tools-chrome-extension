@@ -39,7 +39,17 @@ module.exports = {
         test: /\.scss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          {
+            loader: "style-loader",
+            options: {
+              // insert after DOM has loaded
+              insert: function insertIntoTarget(element, options) {
+                document.addEventListener("DOMContentLoaded", () => {
+                  document.head.appendChild(element);
+                });
+              },
+            },
+          },
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS

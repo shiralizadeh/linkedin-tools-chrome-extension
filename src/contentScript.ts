@@ -1,13 +1,5 @@
 import App from "./app";
-import { createSignal } from "solid-js";
 import { render, createComponent } from "solid-js/web";
-
-import { extractUsername } from "./utilities";
-
-const notesSelector = ".linkedin-tools-notes";
-
-const generateKey = () =>
-  `linkedin-tools-notes-${extractUsername(window.location.href)}`;
 
 function buildUI() {
   const $layout = document.querySelector(".scaffold-layout__main section");

@@ -1,5 +1,6 @@
 import { createSignal } from "solid-js";
-import "./index.css";
+
+import "./index.scss";
 
 export default function App() {
   const [count, setCount] = createSignal(0);
