@@ -19,6 +19,12 @@
     "page": "options.html",
     "open_in_tab": false
   },
+  "web_accessible_resources": [
+    {
+      "resources": ["/assets/*"],
+      "matches": ["https://*.linkedin.com/*"]
+    }
+  ],
   "icons": {
     "16": "assets/logo-128.png",
     "48": "assets/logo-128.png",
