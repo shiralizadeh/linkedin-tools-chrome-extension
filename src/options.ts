@@ -1,4 +1,4 @@
-import { LinkedInToolsPreferences } from "./utilities";
+import { LinkedInToolsPreferences } from "./libs/preferences";
 
 // Handle UI events
 const $active = document.getElementById("active") as HTMLSelectElement;

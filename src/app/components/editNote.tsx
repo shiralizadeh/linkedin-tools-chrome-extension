@@ -1,33 +1,69 @@
 import { createSignal } from "solid-js";
 import { Note } from "../types/note";
-import { NoteStatus } from "../enums/noteStatus";
 
-const INIT_NOTE = {
+const INIT_NOTE: Note = {
   id: "-1",
+  username: "",
   text: "",
-  status: NoteStatus.Nothing,
 };
 
 type Props = {
   note?: Note;
   onSave: (note: Note) => void;
+  onDelete?: (id: string) => void;
 };
 
-export function EditNote({ note, onSave }: Props) {
-  const editNote = note || INIT_NOTE;
+export function EditNote({ note, onSave, onDelete }: Props) {
+  const [editNote, setEditNote] = createSignal(note || INIT_NOTE);
 
-  const handleKeyDown = (e: any) => {
-    if (editNote.text == "" || (editNote.id == "-1" && e.key !== "Enter"))
-      return;
+  const handleKeyUp = (e: any) => {
+    const updatedNote = {
+      ...editNote(),
+      text: e.target.value,
+    };
 
-    onSave({ ...editNote, text: e.target.value });
+    setEditNote(updatedNote);
 
-    e.target.value = "";
+    if (editNote().id == "-1") {
+      if (e.key === "Enter" && e.target.value !== "") {
+        onSave({ ...updatedNote });
+
+        e.target.value = "";
+      }
+    } else {
+      onSave({ ...updatedNote });
+    }
+  };
+
+  const isEditing = editNote().id !== "-1";
+
+  const handleDeleteClick = () => {
+    onDelete && onDelete(editNote().id);
   };
 
   return (
-    <li>
-      <input value={editNote.text} onKeyDown={handleKeyDown} />
+    <li
+      class="lt-note"
+      classList={{
+        editing: isEditing,
+      }}
+    >
+      <input
+        tabIndex="0"
+        class="lt-input"
+        value={editNote().text}
+        onKeyUp={handleKeyUp}
+        placeholder={isEditing ? "" : "Type & Press [Enter] to add a note..."}
+      />
+      {isEditing && (
+        <img
+          tabIndex="1"
+          class="lt-delete"
+          src={chrome.runtime.getURL("assets/delete.png")}
+          alt="Delete"
+          onClick={handleDeleteClick}
+        />
+      )}
     </li>
   );
 }
