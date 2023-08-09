@@ -7,10 +7,11 @@ A set of utilities for LinkedIn
 ## Features
 
 - Profile Notes
+- Store Data locally 
 
 ## Coming soon
 
-- Sync data with a third-party
+- Sync data with a third-party (Server)
 - Profile View History
 - Profile Analytics using AI
 
@@ -30,7 +31,8 @@ A set of utilities for LinkedIn
 
 ### 0.0.1
 
-- 
+- Profile notes
+- Store Data locally 
 
 ---
 
