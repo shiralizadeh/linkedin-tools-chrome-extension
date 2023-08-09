@@ -1,32 +1,41 @@
 import { Note } from "../app/types/note";
 
+type DbEvent<T> = Event & {
+  target: {
+    result: T;
+  };
+};
+
 export const notesRepository = {
+  connectNotes: (db: IDBDatabase) => {
+    const transaction = db.transaction("notes", "readwrite");
+
+    const notes = transaction.objectStore("notes");
+
+    return notes;
+  },
   get: async (db: IDBDatabase, username: string) => {
     return new Promise<Note[]>((resolve, reject) => {
-      const transaction = db.transaction("notes", "readwrite");
+      const notes = notesRepository.connectNotes(db);
 
-      const notes = transaction.objectStore("notes");
+      const request = notes.getAll();
 
-      const query = notes.getAll();
-
-      query.onsuccess = function (event: any) {
-        const result = event.target.result.filter(
+      request.onsuccess = function () {
+        const result = request.result.filter(
           (note: Note) => note.username === username
         );
 
         resolve(result);
       };
 
-      query.onerror = function (event: any) {
+      request.onerror = function () {
         reject();
       };
     });
   },
   insert: async (db: IDBDatabase, note: Note) => {
     return new Promise((resolve, reject) => {
-      const transaction = db.transaction("notes", "readwrite");
-
-      const notes = transaction.objectStore("notes");
+      const notes = notesRepository.connectNotes(db);
 
       const request = notes.add(note);
 
@@ -41,9 +50,7 @@ export const notesRepository = {
   },
   update: async (db: IDBDatabase, note: Note) => {
     return new Promise((resolve, reject) => {
-      const transaction = db.transaction("notes", "readwrite");
-
-      const notes = transaction.objectStore("notes");
+      const notes = notesRepository.connectNotes(db);
 
       const request = notes.put(note);
 
@@ -58,14 +65,29 @@ export const notesRepository = {
   },
   delete: async (db: IDBDatabase, id: string) => {
     return new Promise((resolve, reject) => {
-      const transaction = db.transaction("notes", "readwrite");
-
-      const notes = transaction.objectStore("notes");
+      const notes = notesRepository.connectNotes(db);
 
       const request = notes.delete(id);
 
       request.onsuccess = function () {
         resolve(request.result);
+      };
+
+      request.onerror = function () {
+        reject();
+      };
+    });
+  },
+  count: async (db: IDBDatabase) => {
+    return new Promise<number>((resolve, reject) => {
+      const notes = notesRepository.connectNotes(db);
+
+      const request = notes.count();
+
+      request.onsuccess = function () {
+        const result = request.result;
+
+        resolve(result);
       };
 
       request.onerror = function () {
