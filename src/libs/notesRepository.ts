@@ -86,6 +86,8 @@ export const notesRepository = {
 
       request.onsuccess = function () {
         const result = request.result;
+        
+        console.log(request);
 
         resolve(result);
       };
